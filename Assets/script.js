@@ -22,6 +22,8 @@ function fetchLocation(event) {
         })
         .then((data) => {
             fetchWeather(data);
+            console.log(data);
+            city = data[0].name;
         })
         .catch(console.err);
 
@@ -34,7 +36,7 @@ function fetchLocation(event) {
 function fetchWeather(data) {
     var lat = data[0].lat;
     var lon = data[0].lon;
-    var url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${key}`;
+    var url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${key}`;
 
     fetch(url)
         .then((resp) => {
@@ -50,10 +52,27 @@ function fetchWeather(data) {
 
 function currentWeather(data) {
     console.log(data);
-    console.log(state);
+    var today = moment().format("MM/DD/YY");
+    var icon = data.current.weather[0].icon;
+    var temp = data.current.temp;
+    var wind = data.current.wind_speed;
+    var humidity = data.current.humidity;
+    var uvIndex = data.current.uvi;
+    
+    $('#current-city-name').text(`${city}, ${state} (${today})`);
+    $('#current-icon').attr("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
+    // $('#current-icon').html(`<img src="http://openweathermap.org/img/wn/${icon}@2x.png">`);
+    $('#current-temp').text(`Temp: ${temp}℉`);
+    $('#current-wind').text(`Wind: ${wind} mph`);
+    $('#current-humidity').text(`Humidity: ${humidity}%`);
+    $('#uv-index').text(`UV Index: ${uvIndex}`);
+
 }
 
 function fiveDayForecast(data) {
-    console.log(data);
+    
+
+
+    $('#day-1-date').text(moment().add(1,'days').format("MM/DD/YY"));
 }
 

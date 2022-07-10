@@ -19,6 +19,7 @@
         <form id="search-bar" class="input-group">
             <input type="text" name="search-city-name" id="search-city-name" class="input-group-field" placeholder="Enter City Name">
         <select id="select-state" name="country-state">
+            <option value="none" selected disabled hidden>State</option>
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
             <option value="AS">American Samoa</option>
@@ -82,7 +83,7 @@
         <div id="weather-container" class="column">
             <section id="current-weather">
                 <h2 id="current-city-name">City Name</h2>
-                <img src="#" alt="#" id="current-icon">
+                <img src="#" id="current-icon">
                 <li id="current-temp">Temp:</li>
                 <li id="current-wind">Wind:</li>
                 <li id="current-humidity">Humidty:</li>
@@ -138,6 +139,7 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/283ba5099d.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./Assets/script.js"></script>
 </body>
 
