@@ -1,0 +1,50 @@
+#page-title {
+    color:#0e2e6b;
+}
+
+#search-bar, #current-weather {
+    border: 2px solid #1779ba;
+    padding: 10px;
+}
+
+.input-group {
+    max-width: 325px;
+    min-width: 100px;
+}
+.input-group-label {
+    align-items: center;
+    max-height: 40px;
+}
+#search-button {
+    max-height:40px;
+}
+#big-container {
+    padding: 50px 0px 0px 50px;
+
+}
+#weather-container {
+    padding-left: 100px;
+    color:#1779ba;
+    list-style-type: none;
+    line-height: 1.6;
+}
+
+#five-day-forecast {
+    padding-top: 50px;
+}
+
+#five-day-forecast {
+    color:#1779ba;
+}
+
+.daily-weather-card {
+    background-color: #1779ba;
+    color:white;
+    padding: 10px 20px 20px 10px;
+    margin: 20px 20px 0px 0px;
+    width: 150px;
+}
+
+#day-5 {
+    margin-right: 0px;
+}
