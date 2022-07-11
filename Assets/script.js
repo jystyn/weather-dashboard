@@ -27,7 +27,6 @@ function previousLocation() {
     var state = storedCity.slice(-2);
     var url = `http://api.openweathermap.org/geo/1.0/direct?q=${city},${state},US&limit=5&appid=${key}`;
 
-    console.log(url);
     fetch(url)
         .then((resp) => {
             if (!resp.ok) throw new Error(resp.statusText);
@@ -47,7 +46,7 @@ function fetchLocation(event) {
     city = $('#search-city-name').val();
     state = $('#select-state').val();
     var url = `http://api.openweathermap.org/geo/1.0/direct?q=${city},${state},US&limit=5&appid=${key}`;
-
+ 
     fetch(url)
         .then((resp) => {
             if (!resp.ok) throw new Error(resp.statusText);
@@ -116,6 +115,7 @@ function currentWeather(data) {
     var humidity = data.current.humidity;
     var uvIndex = data.current.uvi;
 
+    $('#weather-container').removeClass("hidden");
     $('#current-city-name').text(`${city}, ${state} (${today})`);
     $('#current-icon').attr("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
     $('#current-temp').text(`Temp: ${temp}℉`);

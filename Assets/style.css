@@ -15,7 +15,8 @@
 #search,
 #current-weather {
     border: 2px solid #1779ba;
-    background-color: #e3eef7;
+    background-color: #99c7ed;
+    color: #0e2e6b;
     padding: 10px;
 }
 
@@ -81,4 +82,8 @@
 
 #day-5 {
     margin-right: 0px;
+}
+
+.hidden {
+    display: none;
 }
