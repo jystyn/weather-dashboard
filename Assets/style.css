@@ -27,6 +27,7 @@
     padding: 50px 0px 0px 50px;
 
 }
+
 #weather-container {
     padding-left: 100px;
     color:#1779ba;
@@ -34,8 +35,15 @@
     line-height: 1.6;
 }
 
+#uv-color {
+    color: white;
+    font-weight: bold;
+    padding: 2px 10px;
+    border-radius: 5px;
+}
+
 #five-day-forecast {
-    padding-top: 50px;
+    padding-top: 20px;
 }
 
 #five-day-forecast {
