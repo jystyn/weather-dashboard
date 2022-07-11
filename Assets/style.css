@@ -1,9 +1,21 @@
-#page-title {
-    color:#0e2e6b;
+* {
+    list-style-type: none;
+    line-height: 1.6;
 }
 
-#search-bar, #current-weather {
+#page-title, #search-history {
+    color: #0e2e6b;
+}
+
+#search {
+    display: flex;
+    flex-direction: column;
+}
+
+#search,
+#current-weather {
     border: 2px solid #1779ba;
+    background-color: #e3eef7;
     padding: 10px;
 }
 
@@ -11,6 +23,7 @@
     max-width: 400px;
     min-width: 100px;
 }
+
 .input-group-label {
     align-items: center;
     max-height: 40px;
@@ -21,8 +34,17 @@
 }
 
 #search-button {
-    max-height:40px;
+    max-height: 40px;
 }
+
+.search-history-btn {
+    background-color: #1779ba;
+    color:white;
+    margin: 5px;
+    padding-left: 5px;
+
+}
+
 #big-container {
     padding: 50px 0px 0px 50px;
 
@@ -30,9 +52,8 @@
 
 #weather-container {
     padding-left: 100px;
-    color:#1779ba;
-    list-style-type: none;
-    line-height: 1.6;
+    color: #1779ba;
+
 }
 
 #uv-color {
@@ -47,12 +68,12 @@
 }
 
 #five-day-forecast {
-    color:#1779ba;
+    color: #1779ba;
 }
 
 .daily-weather-card {
     background-color: #1779ba;
-    color:white;
+    color: white;
     padding: 10px 20px 20px 10px;
     margin: 20px 20px 0px 0px;
     width: 160px;

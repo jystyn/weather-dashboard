@@ -4,11 +4,42 @@ var key = '66108857e5269e30957c9122ce9d9d84';
 //these variables will help us make our search history
 var city;
 var state;
-var listCityNames = JSON.parse(localStorage.getItem('city')) || [];
+var listCityNames = JSON.parse(localStorage.getItem('City')) || [];
 //Call a function that populates search history under search bar
 
-//After the user enters their city and selects their state, they press "Search" and start next function
-$('#search-button').on("click", fetchLocation);
+
+function start() {
+    for (var i = 0; i < listCityNames.length; i++) {
+        var $liEl = $('<li>').text(`${listCityNames[i].city}, ${listCityNames[i].state}`);
+        $('#search-history').append($liEl);
+        $('#search-history li').addClass("search-history-btn");
+    }
+
+    //After the user enters their city and selects their state, they press "Search" and start next function
+    $('#search-button').on("click", fetchLocation);
+    $('#search-history li').on("click", previousLocation);
+}
+
+function previousLocation() {
+    var storedCityEl = this;
+    var storedCity = storedCityEl.innerText;
+    var city = storedCity.slice(0, -4);
+    var state = storedCity.slice(-2);
+    var url = `http://api.openweathermap.org/geo/1.0/direct?q=${city},${state},US&limit=5&appid=${key}`;
+
+    console.log(url);
+    fetch(url)
+        .then((resp) => {
+            if (!resp.ok) throw new Error(resp.statusText);
+            console.log(state);
+            return resp.json();
+        })
+        .then((data) => {
+            fetchPreviousWeather(data);
+        })
+        .catch(console.err);
+}
+
 
 //This function finds the coordinates of of the selected city and passes them to the next function
 function fetchLocation(event) {
@@ -35,8 +66,34 @@ function fetchWeather(data) {
     var url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${key}`;
     city = data[0].name;
     var storeCity = { city, state };
-    listCityNames.push(storeCity);
-    localStorage.setItem("City", JSON.stringify(listCityNames));
+
+    // This stores city names into Local Storage
+    // How can we make it show the search history doesn't show duplicates?
+    if (!listCityNames.includes(storeCity)) {
+        listCityNames.push(storeCity);
+        localStorage.setItem("City", JSON.stringify(listCityNames));
+    } else {
+        console.log('duplicate!');
+    }
+
+    fetch(url)
+        .then((resp) => {
+            if (!resp.ok) throw new Error(resp.statusText);
+            return resp.json();
+        })
+        .then((data) => {
+            currentWeather(data);
+            fiveDayForecast(data);
+        })
+        .catch(console.err);
+}
+
+function fetchPreviousWeather(data) {
+    var lat = data[0].lat;
+    var lon = data[0].lon;
+    var url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${key}`;
+    city = data[0].name;
+    console.log(state);
 
     fetch(url)
         .then((resp) => {
@@ -94,4 +151,6 @@ function fiveDayForecast(data) {
         $(`#day-${i}-humidity`).text(`Humidity: ${humidity}%`);
     })
 }
+
+start();
 
