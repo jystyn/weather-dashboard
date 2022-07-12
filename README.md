@@ -13,6 +13,7 @@ When you click on a city in the search history it will show you the weather for 
 While working on this assignment in VS code it worked perfectly, but when I tried running the published page on my personal computer it gave me an error saying that I was requesting an insecure resource in openweathermap.org 
 
 https://github.com/jystyn/weather-dashboard
+
 https://jystyn.github.io/weather-dashboard/
 
 ![weather-dashboard screenshot 1](./Assets/weather-dashboard-screenshot-1.png)
