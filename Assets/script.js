@@ -31,7 +31,6 @@ function previousLocation() {
     fetch(url)
         .then((resp) => {
             if (!resp.ok) throw new Error(resp.statusText);
-            console.log(state);
             return resp.json();
         })
         .then((data) => {
@@ -46,7 +45,6 @@ function fetchPreviousWeather(data) {
     var lon = data[0].lon;
     var url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${key}`;
     city = data[0].name;
-    console.log(state);
 
     fetch(url)
         .then((resp) => {
@@ -130,14 +128,11 @@ function currentWeather(data) {
 
 //This function give the dates for the next 5 days as well as the weather info
 function fiveDayForecast(data) {
-    $('#day-1-date').text(moment().add(1, 'days').format("MM/DD/YY"));
-    $('#day-2-date').text(moment().add(2, 'days').format("MM/DD/YY"));
-    $('#day-3-date').text(moment().add(3, 'days').format("MM/DD/YY"));
-    $('#day-4-date').text(moment().add(4, 'days').format("MM/DD/YY"));
-    $('#day-5-date').text(moment().add(5, 'days').format("MM/DD/YY"));
-
-    // I couldn't figure out why my .each wasn't populating all 5 days, so I decided to add a 6th day and make it go hidden so the 5th day is populated
-    $('#day-6').addClass("hidden");
+    $('#day-0-date').text(moment().add(1, 'days').format("MM/DD/YY"));
+    $('#day-1-date').text(moment().add(2, 'days').format("MM/DD/YY"));
+    $('#day-2-date').text(moment().add(3, 'days').format("MM/DD/YY"));
+    $('#day-3-date').text(moment().add(4, 'days').format("MM/DD/YY"));
+    $('#day-4-date').text(moment().add(5, 'days').format("MM/DD/YY"));
 
     //This .each method allows us to repeat processes instead of repeating the same code
     $(`.daily-weather-card`).each(function (i) {
@@ -145,6 +140,7 @@ function fiveDayForecast(data) {
         var temp = data.daily[i].temp.day;
         var wind = data.daily[i].wind_speed;
         var humidity = data.daily[i].humidity;
+       
         $(`#day-${i}-icon`).attr("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
         $(`#day-${i}-temp`).text(`Temp: ${temp}℉`);
         $(`#day-${i}-wind`).text(`Wind: ${wind} mph`);
